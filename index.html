@@ -1,0 +1,34 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>justy5 - Quick Help, Fast</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+	<header class="app-header">
+		<div class="brand" onclick="navigate('#/landing')">justy5</div>
+		<nav id="navbar" class="navbar hidden">
+			<div class="nav-left">
+				<button class="nav-link" data-route="#/user" onclick="navigate('#/user')">Home</button>
+				<div class="categories" id="categoryBar"></div>
+			</div>
+			<div class="nav-right">
+				<span id="whoami" class="whoami"></span>
+				<button id="switchRoleBtn" class="btn ghost" onclick="switchRole()">Switch Role</button>
+				<button class="btn danger" onclick="logout()">Logout</button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="app"></main>
+
+	<footer class="app-footer">
+		<div>© <span id="year"></span> justy5. Get help in minutes.</div>
+	</footer>
+
+	<script src="app.js"></script>
+</body>
+</html>
