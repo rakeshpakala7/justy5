@@ -24,6 +24,238 @@
 	</header>
 
 	<main id="app"></main>
+<!-- Enhanced Booking Modal with PhonePe-style Payment -->
+<div id="bookingModal" class="modal-backdrop">
+  <div class="modal booking-modal">
+    <div class="modal-header">
+      <h3 id="bookingTitle">Book Tutor Session</h3>
+      <button id="closeBooking" class="close-btn">&times;</button>
+    </div>
+    
+    <div class="booking-content">
+      <!-- Tutor Info -->
+      <div class="tutor-booking-info">
+        <div class="avatar" id="bookingTutorAvatar"></div>
+        <div class="tutor-details">
+          <div class="tutor-name" id="bookingTutorName"></div>
+          <div class="tutor-phone" id="bookingTutorPhone"></div>
+          <div class="tutor-bio" id="bookingTutorBio"></div>
+        </div>
+      </div>
+
+      <!-- Call Type Selection -->
+      <div class="call-type-section">
+        <h4>Select Call Type</h4>
+        <div class="call-options">
+          <label class="call-option">
+            <input type="radio" name="callType" value="video" checked>
+            <div class="option-content">
+              <span class="option-icon">📹</span>
+              <div class="option-text">
+                <span class="option-title">Video Call</span>
+                <span class="option-desc">Face-to-face session</span>
+              </div>
+            </div>
+          </label>
+          <label class="call-option">
+            <input type="radio" name="callType" value="voice">
+            <div class="option-content">
+              <span class="option-icon">📞</span>
+              <div class="option-text">
+                <span class="option-title">Voice Call</span>
+                <span class="option-desc">Audio-only session</span>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Duration Selection -->
+      <div class="form-group">
+        <label>Duration</label>
+        <select id="bookingDuration">
+          <option value="15">15 minutes</option>
+          <option value="30">30 minutes</option>
+          <option value="45">45 minutes</option>
+          <option value="60">60 minutes</option>
+        </select>
+      </div>
+
+      <!-- Start Time -->
+      <div class="form-group">
+        <label>Start Time</label>
+        <input id="bookingStartTime" class="input" type="datetime-local" />
+      </div>
+
+      <!-- Price Summary -->
+      <div class="price-summary">
+        <div class="price-row">
+          <span>Session Fee</span>
+          <span id="bookingPrice">₹0</span>
+        </div>
+        <div class="price-row">
+          <span>Call Type</span>
+          <span id="callTypePrice">₹0</span>
+        </div>
+        <hr class="price-divider">
+        <div class="price-row total">
+          <span>Total</span>
+          <span id="bookingTotal">₹0</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="booking-actions">
+      <button id="cancelBooking" class="btn ghost full-width">Cancel</button>
+      <button id="confirmBooking" class="btn primary full-width">Pay & Book</button>
+    </div>
+  </div>
+</div>
+
+<!-- PhonePe-style Payment Modal -->
+<div id="paymentModal" class="modal-backdrop">
+  <div class="modal payment-modal phonepe-style">
+    <div class="payment-header">
+      <div class="payment-logo">
+        <div class="logo-icon">💳</div>
+        <span class="logo-text">justy5 Pay</span>
+      </div>
+      <button id="closePayment" class="close-btn">&times;</button>
+    </div>
+    
+    <div class="payment-content">
+      <!-- Payment Summary -->
+      <div class="payment-summary">
+        <div class="summary-header">
+          <h3>Payment Summary</h3>
+          <div class="amount-display" id="paymentAmount">₹0</div>
+        </div>
+        <div class="tutor-info">
+          <div class="avatar" id="paymentTutorAvatar"></div>
+          <div class="tutor-details">
+            <div class="tutor-name" id="paymentTutorName"></div>
+            <div class="session-details" id="paymentSessionDetails"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Payment Methods -->
+      <div class="payment-methods">
+        <h4>Choose Payment Method</h4>
+        <div class="payment-options">
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="upi" checked>
+            <div class="option-content">
+              <span class="option-icon">📱</span>
+              <div class="option-text">
+                <span class="option-title">UPI</span>
+                <span class="option-desc">Pay with UPI ID</span>
+              </div>
+            </div>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="card">
+            <div class="option-content">
+              <span class="option-icon">💳</span>
+              <div class="option-text">
+                <span class="option-title">Credit/Debit Card</span>
+                <span class="option-desc">Visa, Mastercard, RuPay</span>
+              </div>
+            </div>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="wallet">
+            <div class="option-content">
+              <span class="option-icon">💰</span>
+              <div class="option-text">
+                <span class="option-title">Digital Wallet</span>
+                <span class="option-desc">Paytm, PhonePe, Google Pay</span>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+      
+      <!-- UPI Form (Default) -->
+      <div class="payment-form" id="upiForm">
+        <div class="form-group">
+          <label>UPI ID</label>
+          <input type="text" id="upiId" placeholder="username@paytm" class="phonepe-input">
+        </div>
+        <div class="upi-apps">
+          <div class="app-option" data-app="phonepe">
+            <div class="app-icon">📱</div>
+            <span>PhonePe</span>
+          </div>
+          <div class="app-option" data-app="paytm">
+            <div class="app-icon">💰</div>
+            <span>Paytm</span>
+          </div>
+          <div class="app-option" data-app="googlepay">
+            <div class="app-icon">G</div>
+            <span>Google Pay</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card Form -->
+      <div class="payment-form hidden" id="cardForm">
+        <div class="form-group">
+          <label>Card Number</label>
+          <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" class="phonepe-input">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Expiry Date</label>
+            <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" class="phonepe-input">
+          </div>
+          <div class="form-group">
+            <label>CVV</label>
+            <input type="text" id="cvv" placeholder="123" maxlength="3" class="phonepe-input">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Cardholder Name</label>
+          <input type="text" id="cardholderName" placeholder="John Doe" class="phonepe-input">
+        </div>
+      </div>
+      
+      <!-- Wallet Form -->
+      <div class="payment-form hidden" id="walletForm">
+        <div class="form-group">
+          <label>Select Wallet</label>
+          <select id="walletType" class="phonepe-input">
+            <option value="paytm">Paytm</option>
+            <option value="phonepe">PhonePe</option>
+            <option value="googlepay">Google Pay</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="payment-actions">
+      <button id="processPayment" class="btn phonepe-pay-btn">
+        <span id="paymentButtonText">Pay Now</span>
+        <div id="paymentLoader" class="loader hidden"></div>
+      </button>
+      <button id="cancelPayment" class="btn ghost full-width">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Success Modal -->
+<div id="paymentSuccessModal" class="modal-backdrop">
+  <div class="modal success-modal">
+    <div class="success-content">
+      <div class="success-icon">✅</div>
+      <h3>Payment Successful!</h3>
+      <p>Your session has been booked successfully.</p>
+      <div id="bookingDetails" class="booking-details"></div>
+      <button id="closeSuccess" class="btn primary">Continue</button>
+    </div>
+  </div>
+</div>
+
 
 	<footer class="app-footer">
 		<div>© <span id="year"></span> justy5. Get help in minutes.</div>
@@ -31,4 +263,4 @@
 
 	<script src="app.js"></script>
 </body>
-</html>
+</html> 
