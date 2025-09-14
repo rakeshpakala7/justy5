@@ -17,6 +17,12 @@ html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: 
 .app-footer { bottom: 0; top: auto; border-top: 1px solid rgba(148,163,184,0.1); border-bottom: none; display: flex; justify-content: center; }
 
 .brand { font-weight: 700; font-size: 18px; cursor: pointer; color: var(--accent); }
+.brand .logo { display: block; height: 24px; }
+.landing-logo .logo { width: min(90vw, 720px); height: auto; }
+.logo .stroke { stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: draw 3s ease forwards 0.2s; opacity: .6; }
+.logo .spark { animation: float 4s ease-in-out infinite; }
+@keyframes draw { to { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes float { 0%,100% { transform: translateY(-4px); } 50% { transform: translateY(6px); } }
 .navbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; }
 .nav-left { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .nav-right { display: flex; gap: 8px; align-items: center; }
@@ -108,3 +114,450 @@ hr.sep { border: none; border-top: 1px solid rgba(148,163,184,0.12); margin: 12p
 
 /* Compact on small screens */
 @media (max-width: 900px) { .auth { grid-template-columns: 1fr; } .auth-visual { display: none; } }
+/* Enhanced Booking Modal Styles */
+.booking-modal {
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.booking-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tutor-booking-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(110,231,183,0.05);
+  border: 1px solid rgba(110,231,183,0.2);
+  border-radius: 12px;
+}
+
+.tutor-phone {
+  color: var(--accent-2);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 4px 0;
+}
+
+.call-type-section h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.call-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.call-option {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid rgba(148,163,184,0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.call-option:hover {
+  border-color: var(--accent-2);
+  background: rgba(96,165,250,0.05);
+}
+
+.call-option input[type="radio"] {
+  width: auto;
+  margin: 0;
+  margin-right: 12px;
+}
+
+.option-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.option-icon {
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
+}
+
+.option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.option-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.option-desc {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.price-summary {
+  background: rgba(110,231,183,0.05);
+  border: 1px solid rgba(110,231,183,0.2);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.price-row.total {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--accent);
+  margin-top: 8px;
+}
+
+.price-divider {
+  border: none;
+  border-top: 1px solid rgba(148,163,184,0.2);
+  margin: 8px 0;
+}
+
+.booking-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(148,163,184,0.2);
+}
+
+/* PhonePe-style Payment Modal */
+.payment-modal.phonepe-style {
+  max-width: 420px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(110,231,183,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.payment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid rgba(110,231,183,0.2);
+}
+
+.payment-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--muted);
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: rgba(148,163,184,0.1);
+  color: var(--text);
+}
+
+.payment-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.payment-summary {
+  background: rgba(110,231,183,0.08);
+  border: 1px solid rgba(110,231,183,0.3);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.summary-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.amount-display {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.tutor-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tutor-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.session-details {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.payment-methods h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid rgba(148,163,184,0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-option:hover {
+  border-color: var(--accent-2);
+  background: rgba(96,165,250,0.05);
+}
+
+.payment-option input[type="radio"] {
+  width: auto;
+  margin: 0;
+  margin-right: 12px;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.phonepe-input {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(148,163,184,0.2);
+  background: rgba(13,19,32,0.8);
+  color: var(--text);
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.phonepe-input:focus {
+  outline: none;
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 2px rgba(96,165,250,0.1);
+  background: rgba(13,19,32,1);
+}
+
+.upi-apps {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.app-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  border: 1px solid rgba(148,163,184,0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(13,19,32,0.5);
+}
+
+.app-option:hover {
+  border-color: var(--accent-2);
+  background: rgba(96,165,250,0.05);
+}
+
+.app-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background: var(--accent-2);
+  color: white;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.app-option span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.payment-actions {
+  padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.phonepe-pay-btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #00100b;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.phonepe-pay-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(110,231,183,0.3);
+}
+
+.phonepe-pay-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Success Modal Styles */
+.success-modal {
+  max-width: 400px;
+}
+
+.success-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.success-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.success-content h3 {
+  margin: 0 0 8px 0;
+  color: var(--accent);
+}
+
+.success-content p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.booking-details {
+  background: rgba(110,231,183,0.05);
+  border: 1px solid rgba(110,231,183,0.2);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* Show/Hide Modal */
+.modal-backdrop.show {
+  display: flex !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Payment method switching */
+.payment-option input[type="radio"]:checked {
+  accent-color: var(--accent-2);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .payment-modal {
+    max-width: 95vw;
+    margin: 10px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
